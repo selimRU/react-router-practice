@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Datum = ({ datum }) => {
-    const { id, title} = datum
+const Datum = ({ meal }) => {
+    const navigate = useNavigate()
+    const { idMeal, strCategory, strMealThumb } = meal
+
+    const hadleNavigate = () => {
+        navigate(`/datum/${idMeal}`)
+    }
     return (
         <div className=' border shadow-md px-4 text-center py-5'>
-            <h3>{title}</h3>
-            <Link to={`/datum/${id}`}><button className=' bg-slate-500 py-2 my-4 px-4 rounded-md'>Show Detailes</button></Link>
+            <img src={strMealThumb} alt="" />
+            <h3>{strCategory}</h3>
+            <button onClick={hadleNavigate} className=' bg-slate-500 py-2 my-4 px-4 rounded-md'>Show Detailes</button>
         </div>
     );
 };

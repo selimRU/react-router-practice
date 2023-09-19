@@ -7,16 +7,18 @@ import Home from "./componenets/Home/Home"
 import About from "./componenets/About/About"
 import Contact from "./componenets/Contact/Contact"
 import Details from "./componenets/Details/Details"
+import Error from './componenets/Error/Error'
 
 
 const router = createBrowserRouter([
   {
     path: '/',
+    errorElement: <Error></Error>,
     element: <Main></Main>,
     children: [
       {
         path: '/',
-        loader: () => fetch('https://jsonplaceholder.typicode.com/albums')
+        loader: () => fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=fish')
 
         ,
         element: <Home></Home>
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/datum/:id',
-        loader: ({ params }) => fetch(`https://jsonplaceholder.typicode.com/albums/${params.id}`),
+        loader: ({ params }) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.id}`),
         element: <Details></Details>
       }
     ]
